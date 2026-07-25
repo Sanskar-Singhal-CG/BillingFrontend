@@ -1,0 +1,46 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar, .sidebar-open {
+    width: 200px;
+    padding: 20px;
+    background-color: #737373;
+    color: white;
+}
+
+.sidebar a, .sidebar-open a {
+    display: block;
+    margin: 10px 0;
+    color: white;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.menu-button, .close-button {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar-open {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        z-index: 1;
+    }
+
+    .menu-button,
+    .close-button {
+        display: inline-block;
+    }
+}

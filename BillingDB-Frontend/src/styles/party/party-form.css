@@ -1,0 +1,17 @@
+.party-form{
+    display: inline-block;
+    background-color: rgb(221, 221, 221);
+    padding: 20px;
+    border: solid 2px black;
+}
+
+form div{
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+form button{
+    padding: 10px;
+    margin: 10px;
+}

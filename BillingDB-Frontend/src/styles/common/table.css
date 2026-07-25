@@ -1,0 +1,26 @@
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    border: 1px solid #cccccc;
+    text-align: left;
+}
+
+.table th {
+    background-color: #dddddd;
+}
+
+.action-col{
+    display: flex;
+    gap: 15px;
+}
+
+.action-col button{
+    border: none;
+    cursor: pointer;
+}
