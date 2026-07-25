@@ -1,0 +1,30 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+    margin: 15px;
+    padding: 15px;
+    background-color: #dddddd;
+    border: 2px solid black;
+}
+
+.form div {
+    display: flex;
+    flex: 1 1 80px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form input, .form textarea, .form select {
+    width: 100%;
+    padding: 8px;
+}
+
+.form textarea {
+    height: 32px;
+}
+
+.form button {
+    padding: 8px;
+}

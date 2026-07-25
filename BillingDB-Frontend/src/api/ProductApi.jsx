@@ -25,4 +25,4 @@ async function deleteProduct(id){
     return response.data;
 }
 
-export{ getAllProducts, getProduct, createProduct, updateProduct, deleteProduct}
+export { getAllProducts, getProduct, createProduct, updateProduct, deleteProduct}

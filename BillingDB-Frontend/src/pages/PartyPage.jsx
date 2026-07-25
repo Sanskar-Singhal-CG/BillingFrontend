@@ -14,14 +14,14 @@ function PartyPage(){
         setshowform(true);
     }
 
-    function closeCreatePartyForm(){
-        setpartyToEdit(null);
-        setshowform(false);
-    }
-
     function openEditPartyForm(party) {
         setpartyToEdit(party);
         setshowform(true);
+    }
+
+    function closePartyForm(){
+        setpartyToEdit(null);
+        setshowform(false);
     }
 
     async function getAllParties() {
@@ -39,7 +39,7 @@ function PartyPage(){
             else { await createParty(party); }
 
             await getAllParties();
-            closeCreatePartyForm();
+            closePartyForm();
 
         } catch(e) { console.log(e) }
     }
@@ -70,7 +70,9 @@ function PartyPage(){
                     )
                 }
             </div>
-            { showform ? <PartyForm onCancel={closeCreatePartyForm} onSave={saveParty} partyToEdit={partyToEdit} /> : <PartyTable parties={ parties } onEdit={openEditPartyForm} onDelete={removeParty}/> }
+
+            { showform && <PartyForm onCancel={closePartyForm} onSave={saveParty} partyToEdit={partyToEdit} /> }
+            <PartyTable parties={parties} onEdit={openEditPartyForm} onDelete={removeParty} />
         </div>
         </>
     )

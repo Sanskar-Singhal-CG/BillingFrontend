@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../../styles/party/party-form.css'
+import '../../styles/common/form.css'
 function PartyForm({ onCancel, onSave, partyToEdit }) {
     const [party, setParty] = useState({
         name: partyToEdit ? partyToEdit.name : '',
@@ -25,7 +25,7 @@ function PartyForm({ onCancel, onSave, partyToEdit }) {
     }
 
     return (
-        <form className="party-form" onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Name</label>
                 <input
@@ -38,11 +38,11 @@ function PartyForm({ onCancel, onSave, partyToEdit }) {
             </div>
 
             <div>
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">Phone (Valid 10 Digit)</label>
                 <input
                     id="phone"
                     name="phone"
-                    type="text"
+                    type="number"
                     value={party.phone}
                     onChange={handleChange}
                 />
