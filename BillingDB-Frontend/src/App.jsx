@@ -1,10 +1,12 @@
 import Layout from './components/layout/Layout'
 import { Route, Routes } from 'react-router-dom';
+
 import BillingPage from './pages/BillingPage';
 import ProductCategoriesPage from './pages/ProductCategoriesPage';
 import PartyPage from './pages/PartyPage';
 import PartyProductPricingPage from './pages/PartyProductPricingPage';
 import InvoicesPage from './pages/InvoicesPage';
+import SettingsPage from './pages/SettingsPage'
 function App() {
   return(
     <>
@@ -15,7 +17,7 @@ function App() {
         <Route path="party" element={<PartyPage />} />
         <Route path="customPricing" element={<PartyProductPricingPage />} />
         <Route path="invoices" element={<InvoicesPage />} />
-        <Route path="settings" />
+        <Route path="settings" element={<SettingsPage />} />
       </Route>
     </Routes>
     </>

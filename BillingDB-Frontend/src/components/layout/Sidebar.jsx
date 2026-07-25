@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import '../../styles/layout/layout.css'
 
 function Sidebar({ isOpen, onClose }){
 
@@ -10,11 +11,11 @@ function Sidebar({ isOpen, onClose }){
                 <button className="close-button" onClick={onClose}>=</button>
                 <h2> Billing System</h2>
             </div>
-            <div>
+            <div className='options'>
                 <NavLink to="/">Billing</NavLink>
                 <NavLink to="/products">Products and Categories</NavLink>
                 <NavLink to="/party">Party</NavLink>
-                <NavLink to="/productPricing">Party Product Pricing</NavLink>
+                <NavLink to="/customPricing">Party Custom Prices</NavLink>
                 <NavLink to="/invoices">Invoices</NavLink>
                 <NavLink to="/settings">Settings</NavLink>
             </div>

@@ -6,7 +6,7 @@
 .sidebar, .sidebar-open {
     width: 200px;
     padding: 20px;
-    background-color: #737373;
+    background-color: black;
     color: white;
 }
 
@@ -23,6 +23,30 @@
 
 .menu-button, .close-button {
     display: none;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options a{
+    text-decoration: none;
+    cursor: pointer;
+    border: solid 1px rgb(221, 221, 221);
+    padding: 12px;
+    background-color: rgb(31, 31, 31);
+    font-size: 16px;
+}
+
+.options a:hover{
+    background-color: rgb(16, 16, 16);
+}
+
+aside div h2{
+    padding-bottom: 20px;
+    border-bottom: solid 2px white;
 }
 
 @media (max-width: 768px) {
