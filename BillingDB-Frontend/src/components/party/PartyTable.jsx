@@ -1,6 +1,6 @@
 import '../../styles/common/table.css'
 
-function PartyTable( { parties, onEdit, onDelete }) {
+function PartyTable( { parties, onEdit }) {
     return (
         <table className="table">
             <thead>
@@ -30,9 +30,6 @@ function PartyTable( { parties, onEdit, onDelete }) {
                                     <button type="button" onClick={function(){
                                         onEdit(party);
                                     }}>Edit</button>
-                                    <button type="button" onClick={function(){
-                                        onDelete(party.id);
-                                    }}>Delete</button>
                                 </td>
                             </tr>
                         );

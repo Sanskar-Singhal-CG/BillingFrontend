@@ -1,7 +1,7 @@
 import apiClient from "./ApiClient";
 
 async function getProductPriceAndGst(payload){
-    const response = await apiClient.get('api/Invoice/getProdPG', payload);
+    const response = await apiClient.post('api/BillingInvoice/getProdPG', payload);
     return response.data;
 }
 
