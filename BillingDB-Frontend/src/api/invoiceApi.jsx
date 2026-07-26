@@ -14,4 +14,10 @@ async function getInvoicesByParty(partyId){
     const response = await apiClient.get(`api/BillingInvoice/getInvoiceIdNameAndDate/${partyId}`);
     return response.data;
 }
-export { getProductPriceAndGst, createInvoice, getInvoicesByParty }
+
+async function getInvoice(invoiceId){
+    const response = await apiClient.get(`api/BillingInvoice/${invoiceId}`);
+    return response.data;
+}
+
+export { getProductPriceAndGst, createInvoice, getInvoicesByParty, getInvoice }
