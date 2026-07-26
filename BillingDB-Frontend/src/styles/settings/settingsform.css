@@ -1,0 +1,22 @@
+.settingsForm {
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.settingsForm div {
+    flex: 1 1 45%;
+}
+
+.settingsForm input[type="file"]::file-selector-button {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+
+.signatureImage{
+    display: block;
+    max-width: 100%;
+    width: 300px;
+    height: auto;
+}
