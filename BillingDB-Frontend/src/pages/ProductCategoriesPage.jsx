@@ -7,6 +7,7 @@ import ProductTable from "../components/Product&Categories/ProductTable"
 
 import { getAllCategory, createCategory, updateCategory, deleteCategory} from "../api/CategoryApi"
 import { getAllProducts, createProduct, updateProduct, deleteProduct } from "../api/ProductApi"
+import '../styles/common/button.css'
 
 function ProductCategoriesPage(){
 
@@ -58,6 +59,7 @@ function ProductCategoriesPage(){
         try{
             await deleteCategory(id);
             await getCategories();
+            await getProducts();
         } catch(e) { console.log(e); }
 
     }
@@ -115,7 +117,7 @@ function ProductCategoriesPage(){
             <h1>Products and Categories</h1>
             <div>
                 {
-                !showCategoryform && <button type="button" onClick={openCreateCategoryform}>Add Category</button>
+                !showCategoryform && <button className="custom-button" type="button" onClick={openCreateCategoryform}>Add Category</button>
                 }
             </div>
 
@@ -129,7 +131,7 @@ function ProductCategoriesPage(){
             
             <div>
                 {
-                !showProductform && <button type="button" onClick={openCreateProductform}>Add Product</button>
+                !showProductform && <button className="custom-button" type="button" onClick={openCreateProductform}>Add Product</button>
                 }
             </div>
             {showProductform && <ProductForm onCancel={closeProductform} onSave={saveProduct} productToEdit={ productToEdit } categories={ categories }/>}

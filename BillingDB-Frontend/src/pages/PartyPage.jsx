@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PartyTable from "../components/party/PartyTable";
 import { createParty , getAllParty, updateParty, deleteParty } from "../api/partyApi";
 import PartyForm from "../components/party/PartyForm";
+import '../styles/common/button.css'
 
 function PartyPage(){
 
@@ -66,7 +67,7 @@ function PartyPage(){
                 <h1>Party</h1>
                 {
                     !showform && (
-                        <button type="button" onClick={openCreatePartyForm}>Add Party</button>
+                        <button className="custom-button" type="button" onClick={openCreatePartyForm}>Add Party</button>
                     )
                 }
             </div>

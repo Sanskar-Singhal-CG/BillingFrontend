@@ -11,6 +11,11 @@ async function getParty(id){
 
     return response.data;
 }
+
+async function getPartiesIdAndName(){
+    const response = await apiClient.get('api/Party/idn');
+    return response.data;
+}
 async function createParty(party) {
     const response = await apiClient.post('/api/Party', party);
 
@@ -27,4 +32,4 @@ async function deleteParty(id){
     const response = await apiClient.delete(`api/Party/${id}`);
     return response.data;
 }
-export { getAllParty, getParty, createParty, updateParty, deleteParty};
+export { getAllParty, getParty, getPartiesIdAndName, createParty, updateParty, deleteParty};

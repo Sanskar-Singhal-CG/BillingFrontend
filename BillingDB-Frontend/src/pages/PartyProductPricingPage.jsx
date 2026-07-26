@@ -1,78 +1,144 @@
 import { useEffect, useState } from "react";
-import PartyTable from "../components/party/PartyTable";
-import { createParty , getAllParty, updateParty, deleteParty } from "../api/partyApi";
-import PartyForm from "../components/party/PartyForm";
+import { getPartiesIdAndName } from "../api/partyApi";
+import { getProductsIdAndName } from "../api/ProductApi"
+import { getProductPricing, createProductPricing, updateProductPricing, deleteProductPricing } from "../api/PartyProductPricingApi";
+import PartyProductTable from "../components/PartyProductPricing/PartyProductTable";
+import PartyProductEditForm from "../components/PartyProductPricing/PartyProductEditForm";
+import PartyProductForm from "../components/PartyProductPricing/PartyProductForm"
+import '../styles/partyProductPage/page.css'
 
 function PartyProductPricingPage(){
 
     const[parties, setparties] = useState([]);
+    const[partyProducts, setPartyProducts] = useState([]);
+
     const[showform, setshowform] = useState(false);
-    const[partyToEdit, setpartyToEdit] = useState(null);
 
-    function openCreatePartyForm(){
-        setpartyToEdit(null);
+    const[showfield, setshowfield] = useState(false);
+    const[Products, setProducts] = useState([]);
+
+    const [selectedPartyId, setSelectedPartyId] = useState("");
+    const [selectedPartyProductId, setSelectedPartyProductId] = useState("");
+
+    async function openCreatePartyProductForm(){
+        await getAllProducts();
         setshowform(true);
     }
 
-    function openEditPartyForm(party) {
-        setpartyToEdit(party);
-        setshowform(true);
+    function openEditPartyProductForm(PartyProductId) {
+        setSelectedPartyProductId(PartyProductId);
+        setshowfield(true);
     }
 
-    function closePartyForm(){
-        setpartyToEdit(null);
+    function closeEditPartyProductform(){
+        setSelectedPartyProductId(null);
+        setshowfield(false);
+    }
+
+    function closePartyProductForm(){
         setshowform(false);
     }
 
-    async function getAllParties() {
+    useEffect(() => {
+        console.log("partyProducts updated", partyProducts);
+    }, [partyProducts]);
+
+    async function getAllProducts(){
         try{
-            const partiesData = await getAllParty();
-            setparties(partiesData);
+            const productsData = await getProductsIdAndName();
+            setProducts(productsData);
+        } catch(e) { console.log(e) }
+    }
+
+    async function handlePartyChange(event) {
+        const partyId = event.target.value;
+
+        setSelectedPartyId(partyId);
+
+        if (!partyId) {
+            setPartyProducts([]);
+            return;
+        }
+
+        await getAllPartyProducts(partyId);
+    }
+
+    async function getAllPartyProducts(partyId){
+        try{
+            const PartyProductsData = await getProductPricing(Number(partyId));
+            setPartyProducts(PartyProductsData);
         } catch(e) { console.error(e) }
     }
 
-    async function saveParty(party){
-        try{
-            if(partyToEdit){
-                await updateParty(partyToEdit.id, party);
-            }
-            else { await createParty(party); }
+    async function savePartyProduct(PartyProduct){
+        const Payload = {
+            ...PartyProduct,
+            PartyId: selectedPartyId
+        };
 
-            await getAllParties();
-            closePartyForm();
+        try{
+            await createProductPricing(Payload);
+
+            await getAllPartyProducts(selectedPartyId);
+            closePartyProductForm();
 
         } catch(e) { console.log(e) }
     }
 
-    async function removeParty(id){
+    async function updateParty(customPrice){
+        try{
+            await updateProductPricing(Number(selectedPartyProductId), Number(customPrice) );
+            await getAllPartyProducts(selectedPartyId);
+            closeEditPartyProductform();
+        } catch(e) { console.log(e); }
+
+    }
+
+    async function removePartyProduct(id){
         const shouldDelete = window.confirm('Are you Sure?');
         
         if(!shouldDelete) return;
         try{
-            await deleteParty(id);
-            await getAllParties();
+            await deleteProductPricing(id);
+            await getAllPartyProducts(selectedPartyId)
         } catch(e) { console.log(e); }
     }
 
-    useEffect( function() {
-            getAllParty().then(function(partiesData) {setparties(partiesData)});
-        }, []);
-        
+    useEffect(() => {
+        getPartiesIdAndName().then(function(partiesData){ setparties(partiesData);});
+    }, []);
 
     return(
         <>
         <div>
-            <div>
-                <h1>Party</h1>
+            <h1>Party Custom Prices</h1>
+            <div className="customPricePageOptions">
+                <div className="select">
+                    <select
+                        id="partySelect"
+                        value={selectedPartyId}
+                        onChange={handlePartyChange}
+                    >
+                        <option value="">Select a party</option>
+
+                        {parties.map((party) => (
+                            <option key={party.id} value={party.id}>
+                                {party.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 {
-                    !showform && (
-                        <button type="button" onClick={openCreatePartyForm}>Add Party</button>
+                    selectedPartyId && !showform && (
+                        <button type="button" onClick={openCreatePartyProductForm}>Add Custom Price</button>
                     )
                 }
+                
             </div>
 
-            { showform && <PartyForm onCancel={closePartyForm} onSave={saveParty} partyToEdit={partyToEdit} /> }
-            <PartyTable parties={parties} onEdit={openEditPartyForm} onDelete={removeParty} />
+            { selectedPartyId && showform && <PartyProductForm onCancel={closePartyProductForm} onSave={savePartyProduct} Products = { Products } /> }
+            { selectedPartyId && showfield && <PartyProductEditForm onCancel={closeEditPartyProductform} onSave={updateParty} /> }
+            <PartyProductTable partyProducts={ partyProducts } onEdit={openEditPartyProductForm} onDelete={removePartyProduct} />
         </div>
         </>
     )

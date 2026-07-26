@@ -10,6 +10,11 @@ async function getProduct(id){
     return response.data;
 }
 
+async function getProductsIdAndName(){
+    const response = await apiClient.get('api/Product/idn');
+    return response.data;
+}
+
 async function createProduct(product){
     const response = await apiClient.post('api/Product', product);
     return response.data;
@@ -25,4 +30,4 @@ async function deleteProduct(id){
     return response.data;
 }
 
-export { getAllProducts, getProduct, createProduct, updateProduct, deleteProduct}
+export { getAllProducts, getProductsIdAndName, getProduct, createProduct, updateProduct, deleteProduct}
