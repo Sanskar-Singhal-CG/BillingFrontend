@@ -1,0 +1,88 @@
+.invoice-template {
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+    padding: 32px;
+    color: #000000;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.invoice-template p {
+    margin: 4px 0;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #000000;
+}
+
+.invoice-header h1,
+.invoice-header h2,
+.invoice-customer h3,
+.invoice-bank-details h3 {
+    margin: 0 0 10px;
+}
+
+.invoice-title {
+    min-width: 210px;
+    text-align: right;
+}
+
+.invoice-customer {
+    margin: 24px 0;
+}
+
+.invoice-items-table {
+    margin-top: 0;
+}
+
+.invoice-items-table th {
+    background-color: #eeeeee;
+}
+
+.invoice-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 28px;
+}
+
+.invoice-totals {
+    width: 280px;
+}
+
+.invoice-totals > p {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+.invoice-totals .invoice-grand-total {
+    font-weight: bold;
+    border-bottom: 2px solid #000000;
+}
+
+.invoice-signature {
+    margin-top: 24px;
+    text-align: right;
+}
+
+.invoice-signature img {
+    display: block;
+    max-width: 160px;
+    max-height: 70px;
+    margin: 0 0 6px auto;
+}
+
+@media print {
+    .invoice-template {
+        max-width: none;
+        padding: 0;
+    }
+}
