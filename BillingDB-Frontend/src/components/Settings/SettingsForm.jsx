@@ -157,7 +157,7 @@ function SettingsForm({ onSave, companyDetails }) {
             </div>
 
             <div>
-                <label htmlFor="signatureFile">Signature</label>
+                <label htmlFor="signatureFile">Signature (Remove background using <a href="https://www.remove.bg" target='_blank'>www.remove.bg</a>)</label>
                 <input
                     id="signatureFile"
                     name="signatureFile"

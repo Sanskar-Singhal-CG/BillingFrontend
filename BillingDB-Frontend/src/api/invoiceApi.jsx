@@ -10,4 +10,8 @@ async function createInvoice(payload){
     return response.data;
 }
 
-export { getProductPriceAndGst, createInvoice }
+async function getInvoicesByParty(partyId){
+    const response = await apiClient.get(`api/BillingInvoice/getInvoiceIdNameAndDate/${partyId}`);
+    return response.data;
+}
+export { getProductPriceAndGst, createInvoice, getInvoicesByParty }
