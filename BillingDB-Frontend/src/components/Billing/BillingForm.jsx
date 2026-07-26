@@ -1,7 +1,8 @@
 import { useState } from "react";
 import '../../styles/common/form.css'
 import '../../styles/common/table.css'
-import { getProductPriceAndGst } from '../../api/invoiceApi'
+import '../../styles/common/button.css'
+import { getProductPriceAndGst, createInvoice } from '../../api/invoiceApi'
 
 function BillingForm({ parties, products }){
     const[selectedPartyId, setselectedPartyId] = useState('');
@@ -10,6 +11,7 @@ function BillingForm({ parties, products }){
     const[gstRate, setgstRate] = useState('');
     const[quantity, setquantity] = useState('');
     const[invoiceItems, setinvoiceItems] = useState([]);
+    const[createdInvoice, setcreatedInvoice] = useState(null);
 
     function handlePartyChange(event){
         setselectedPartyId(event.target.value);
@@ -75,6 +77,42 @@ function BillingForm({ parties, products }){
         setprice('');
         setgstRate('');
         setquantity('');
+    }
+
+    async function handleCreateBill(){
+        const shouldCreate = window.confirm('Please review the bill before continuing.\n Create Bill?');
+        if(!shouldCreate) return;
+
+        const subTotal = invoiceItems.reduce(function(total, invoiceItem){
+            return total + invoiceItem.subAmount;
+        }, 0);
+
+        const totalGst = invoiceItems.reduce(function(total, invoiceItem){
+            return total + invoiceItem.gstAmount;
+        }, 0);
+
+        const payload = {
+            customerId: Number(selectedPartyId),
+            subTotal: subTotal,
+            totalGst: totalGst,
+            grandTotal: subTotal + totalGst,
+            items: invoiceItems.map(function(invoiceItem){
+                return {
+                    productId: invoiceItem.productId,
+                    quantity: invoiceItem.quantity,
+                    rate: invoiceItem.price,
+                    gstRate: invoiceItem.gstRate,
+                    subTotal: invoiceItem.subAmount,
+                    gstAmount: invoiceItem.gstAmount,
+                    total: invoiceItem.total
+                };
+            })
+        };
+
+        try{
+            const invoice = await createInvoice(payload);
+            setcreatedInvoice(invoice);
+        } catch(e) { console.log(e); }
     }
 
     return (
@@ -182,6 +220,25 @@ function BillingForm({ parties, products }){
                     )}
                 </tbody>
             </table>
+        
+            {invoiceItems.length > 0 && !createdInvoice && (
+                <>
+                    <br></br>
+                    <button className="custom-button" type="button" onClick={handleCreateBill}>Create Bill</button>
+                </>
+            )}
+
+            {createdInvoice && (
+                <>
+                    <br></br>
+                    <button className="custom-button" type="button">Print</button>
+
+                    <br></br>
+                    <br></br>
+
+                    <button className="custom-button" type="button">Download</button>
+                </>
+            )}
         </>
     );
 }

@@ -5,4 +5,9 @@ async function getProductPriceAndGst(payload){
     return response.data;
 }
 
-export { getProductPriceAndGst }
+async function createInvoice(payload){
+    const response = await apiClient.post('api/BillingInvoice', payload);
+    return response.data;
+}
+
+export { getProductPriceAndGst, createInvoice }
