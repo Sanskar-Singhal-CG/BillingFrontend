@@ -3,6 +3,7 @@ import { getInvoicesByParty } from "../api/invoiceApi";
 import { useEffect, useState } from "react";
 import InvoiceTable from "../components/invoices/InvoiceTable"
 import '../styles/partyProductPage/page.css'
+import { printInvoice, downloadInvoice } from '../utils/invoiceDocument'
 
 function InvoicesPage() {
     const [selectedPartyId, setselectedPartyId] = useState('');
@@ -33,6 +34,18 @@ function InvoicesPage() {
         } catch(e) { console.log(e); }
     }
 
+    async function handlePrint(invoiceId){
+        try{
+            await printInvoice(invoiceId);
+        } catch(e) { console.log(e); }
+    }
+
+    async function handleDownload(invoiceId){
+        try{
+            await downloadInvoice(invoiceId);
+        } catch(e) { console.log(e); }
+    }
+
     return (
         <>
         <div>
@@ -54,7 +67,7 @@ function InvoicesPage() {
                         ))}
                     </select>
                 </div>
-                <InvoiceTable Invoices = {Invoices} />
+                <InvoiceTable Invoices={Invoices} onPrint={handlePrint} onDownload={handleDownload} />
             </div>
             </>
     );

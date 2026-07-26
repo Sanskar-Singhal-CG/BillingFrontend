@@ -79,12 +79,14 @@ function InvoiceTemplate({ invoice, includeSignature }) {
                     <p><span>Total GST</span><span>{formatAmount(invoice.totalGst)}</span></p>
                     <p className="invoice-grand-total"><span>Grand Total</span><span>{formatAmount(invoice.grandTotal)}</span></p>
 
-                    {includeSignature && invoice.signatureFile && (
-                        <div className="invoice-signature">
+                    <div className="invoice-signature">
+                        {includeSignature && invoice.signatureFile ? (
                             <img src={`data:image/png;base64,${invoice.signatureFile}`} alt="Company signature" />
-                            <p>Authorized Signature</p>
-                        </div>
-                    )}
+                        ) : (
+                            <div className="invoice-signature-line"></div>
+                        )}
+                        <p>Signature</p>
+                    </div>
                 </div>
             </div>
         </div>

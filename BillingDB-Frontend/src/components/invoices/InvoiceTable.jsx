@@ -1,6 +1,6 @@
 import '../../styles/common/table.css'
 
-function InvoiceTable( { Invoices }) {
+function InvoiceTable( { Invoices, onPrint, onDownload }) {
     return (
         <table className="table">
             <thead>
@@ -23,8 +23,12 @@ function InvoiceTable( { Invoices }) {
                                 <td>{Invoice.invoiceNumber}</td>
                                 <td>{new Date(Invoice.invoiceDate).toLocaleDateString()}</td>
                                 <td className="action-col">
-                                    <button type="button">Print</button>
-                                    <button type="button">Download</button>
+                                    <button type="button" onClick={function(){
+                                        onPrint(Invoice.id);
+                                    }}>Print</button>
+                                    <button type="button" onClick={function(){
+                                        onDownload(Invoice.id);
+                                    }}>Download</button>
                                 </td>
                             </tr>
                         );

@@ -3,6 +3,7 @@ import '../../styles/common/form.css'
 import '../../styles/common/table.css'
 import '../../styles/common/button.css'
 import { getProductPriceAndGst, createInvoice } from '../../api/invoiceApi'
+import { printInvoice, downloadInvoice } from '../../utils/invoiceDocument'
 
 function BillingForm({ parties, products }){
     const[selectedPartyId, setselectedPartyId] = useState('');
@@ -112,6 +113,18 @@ function BillingForm({ parties, products }){
         try{
             const invoice = await createInvoice(payload);
             setcreatedInvoice(invoice);
+        } catch(e) { console.log(e); }
+    }
+
+    async function handlePrint(){
+        try{
+            await printInvoice(createdInvoice.invoiceId);
+        } catch(e) { console.log(e); }
+    }
+
+    async function handleDownload(){
+        try{
+            await downloadInvoice(createdInvoice.invoiceId);
         } catch(e) { console.log(e); }
     }
 
@@ -231,12 +244,12 @@ function BillingForm({ parties, products }){
             {createdInvoice && (
                 <>
                     <br></br>
-                    <button className="custom-button" type="button">Print</button>
+                    <button className="custom-button" type="button" onClick={handlePrint}>Print</button>
 
                     <br></br>
                     <br></br>
 
-                    <button className="custom-button" type="button">Download</button>
+                    <button className="custom-button" type="button" onClick={handleDownload}>Download</button>
                 </>
             )}
         </>
