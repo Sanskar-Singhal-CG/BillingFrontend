@@ -5,11 +5,6 @@ async function getAllCategory(){
     return response.data;
 }
 
-async function getCategory(id){
-    const response = await apiClient.get(`api/Category/${id}`);
-    return response.data;
-}
-
 async function createCategory(category){
     const response = await apiClient.post('api/Category', category);
     return response.data;
@@ -25,4 +20,4 @@ async function deleteCategory(id){
     return response.data;
 }
 
-export { getAllCategory, getCategory, createCategory, updateCategory, deleteCategory}
+export { getAllCategory, createCategory, updateCategory, deleteCategory}

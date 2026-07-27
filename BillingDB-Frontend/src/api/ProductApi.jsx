@@ -5,11 +5,6 @@ async function getAllProducts() {
     return response.data;
 }
 
-async function getProduct(id){
-    const response = await apiClient.get(`api/Product/${id}`);
-    return response.data;
-}
-
 async function getProductsIdAndName(){
     const response = await apiClient.get('api/Product/idn');
     return response.data;
@@ -30,4 +25,4 @@ async function deleteProduct(id){
     return response.data;
 }
 
-export { getAllProducts, getProductsIdAndName, getProduct, createProduct, updateProduct, deleteProduct}
+export { getAllProducts, getProductsIdAndName, createProduct, updateProduct, deleteProduct}

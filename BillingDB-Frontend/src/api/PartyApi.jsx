@@ -6,12 +6,6 @@ async function getAllParty() {
     return response.data;
 }
 
-async function getParty(id){
-    const response = await apiClient.get(`api/Party/${id}`);
-
-    return response.data;
-}
-
 async function getPartiesIdAndName(){
     const response = await apiClient.get('api/Party/idn');
     return response.data;
@@ -28,4 +22,4 @@ async function updateParty(id, party){
     return response.data;
 }
 
-export { getAllParty, getParty, getPartiesIdAndName, createParty, updateParty};
+export { getAllParty, getPartiesIdAndName, createParty, updateParty};
