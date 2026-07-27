@@ -5,6 +5,7 @@
 
 .sidebar, .sidebar-open {
     width: 200px;
+    height: 100%;
     padding: 20px;
     background-color: black;
     color: white;
