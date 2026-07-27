@@ -1,3 +1,5 @@
+//for css of the template, i used AI
+
 import '../../styles/common/table.css'
 import '../../styles/invoices/invoiceTemplate.css'
 

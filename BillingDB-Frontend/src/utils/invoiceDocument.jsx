@@ -1,3 +1,5 @@
+//I used ai for this file
+
 import { jsPDF } from 'jspdf'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { getInvoice } from '../api/invoiceApi'
