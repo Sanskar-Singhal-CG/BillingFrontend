@@ -20,13 +20,15 @@ function CategoryTable( { categories, onEdit, onDelete }) {
                         return(
                             <tr key = {category.id}>
                                 <td>{category.name}</td>
-                                <td className="action-col">
-                                    <button type="button" onClick={function(){
-                                        onEdit(category);
-                                    }}>Edit</button>
-                                    <button type="button" onClick={function(){
-                                        onDelete(category.id);
-                                    }}>Delete</button>
+                                <td>
+                                    <div className="action-col">
+                                        <button type="button" onClick={function(){
+                                            onEdit(category);
+                                        }}>Edit</button>
+                                        <button type="button" onClick={function(){
+                                            onDelete(category.id);
+                                        }}>Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         );

@@ -30,13 +30,15 @@ function ProductTable( { products , onEdit, onDelete }) {
                                 <td>{products.basePrice}</td>
                                 <td>{products.gstRate}</td>
                                 <td>{products.category.name}</td>
-                                <td className="action-col">
-                                    <button type="button" onClick={function(){
-                                        onEdit(products);
-                                    }}>Edit</button>
-                                    <button type="button" onClick={function(){
-                                        onDelete(products.id);
-                                    }}>Delete</button>
+                                <td>
+                                    <div className="action-col">
+                                        <button type="button" onClick={function(){
+                                            onEdit(products);
+                                        }}>Edit</button>
+                                        <button type="button" onClick={function(){
+                                            onDelete(products.id);
+                                        }}>Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         );

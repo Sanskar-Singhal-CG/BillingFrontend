@@ -26,10 +26,12 @@ function PartyTable( { parties, onEdit }) {
                                 <td>{party.phone}</td>
                                 <td>{party.billingAddress}</td>
                                 <td>{party.gstin}</td>
-                                <td className="action-col">
-                                    <button type="button" onClick={function(){
-                                        onEdit(party);
-                                    }}>Edit</button>
+                                <td>
+                                    <div className="action-col">
+                                        <button type="button" onClick={function(){
+                                            onEdit(party);
+                                        }}>Edit</button>
+                                    </div>
                                 </td>
                             </tr>
                         );

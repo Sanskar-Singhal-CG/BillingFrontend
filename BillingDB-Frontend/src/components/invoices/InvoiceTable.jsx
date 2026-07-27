@@ -22,13 +22,15 @@ function InvoiceTable( { Invoices, onPrint, onDownload }) {
                             <tr key = {Invoice.id}>
                                 <td>{Invoice.invoiceNumber}</td>
                                 <td>{new Date(Invoice.invoiceDate).toLocaleDateString()}</td>
-                                <td className="action-col">
-                                    <button type="button" onClick={function(){
-                                        onPrint(Invoice.id);
-                                    }}>Print</button>
-                                    <button type="button" onClick={function(){
-                                        onDownload(Invoice.id);
-                                    }}>Download</button>
+                                <td>
+                                    <div className='action-col'>
+                                        <button type="button" onClick={function(){
+                                            onPrint(Invoice.id);
+                                        }}>Print</button>
+                                        <button type="button" onClick={function(){
+                                            onDownload(Invoice.id);
+                                        }}>Download</button>
+                                    </div>
                                 </td>
                             </tr>
                         );

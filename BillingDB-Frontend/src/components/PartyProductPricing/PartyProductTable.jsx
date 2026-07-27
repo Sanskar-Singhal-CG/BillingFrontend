@@ -32,13 +32,15 @@ function PartyProductTable( { partyProducts, onEdit, onDelete }) {
                                 <td>{partyProduct.basePrice}</td>
                                 <td>{partyProduct.customPrice}</td>
                                 <td>{partyProduct.gstRate}</td>
-                                <td className="action-col">
-                                    <button type="button" onClick={function(){
-                                        onEdit(partyProduct.Id);
-                                    }}>Edit</button>
-                                    <button type="button" onClick={function(){
-                                        onDelete(partyProduct.id);
-                                    }}>Delete</button>
+                                <td>
+                                    <div className="action-col">
+                                        <button type="button" onClick={function(){
+                                            onEdit(partyProduct.Id);
+                                        }}>Edit</button>
+                                        <button type="button" onClick={function(){
+                                            onDelete(partyProduct.id);
+                                        }}>Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         );
