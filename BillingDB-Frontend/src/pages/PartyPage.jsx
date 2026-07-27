@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PartyTable from "../components/party/PartyTable";
-import { createParty , getAllParty, updateParty } from "../api/partyApi";
+import { createParty , getAllParty, updateParty } from "../api/PartyApi";
 import PartyForm from "../components/party/PartyForm";
 import '../styles/common/button.css'
 

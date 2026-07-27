@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPartiesIdAndName } from "../api/partyApi"; 
+import { getPartiesIdAndName } from "../api/PartyApi"; 
 import { getProductsIdAndName } from "../api/ProductApi"
 import BillingForm from '../components/Billing/BillingForm'
 

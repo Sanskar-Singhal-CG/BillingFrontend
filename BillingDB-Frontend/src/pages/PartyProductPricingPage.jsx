@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getPartiesIdAndName } from "../api/partyApi";
+import { getPartiesIdAndName } from "../api/PartyApi";
 import { getProductsIdAndName } from "../api/ProductApi"
 import { getProductPricing, createProductPricing, updateProductPricing, deleteProductPricing } from "../api/PartyProductPricingApi";
 import PartyProductTable from "../components/PartyProductPricing/PartyProductTable";
