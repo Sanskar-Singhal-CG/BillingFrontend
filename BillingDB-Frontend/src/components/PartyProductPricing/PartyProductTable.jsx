@@ -35,7 +35,7 @@ function PartyProductTable( { partyProducts, onEdit, onDelete }) {
                                 <td>
                                     <div className="action-col">
                                         <button type="button" onClick={function(){
-                                            onEdit(partyProduct.Id);
+                                            onEdit(partyProduct.id);
                                         }}>Edit</button>
                                         <button type="button" onClick={function(){
                                             onDelete(partyProduct.id);
