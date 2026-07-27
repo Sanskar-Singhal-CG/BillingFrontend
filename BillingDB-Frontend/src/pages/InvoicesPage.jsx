@@ -1,4 +1,4 @@
-import { getPartiesIdAndName } from "../api/partyApi";
+import { getPartiesIdAndName } from "../api/PartyApi";
 import { getInvoicesByParty } from "../api/invoiceApi";
 import { useEffect, useState } from "react";
 import InvoiceTable from "../components/invoices/InvoiceTable"
