@@ -22,4 +22,9 @@ async function updateParty(id, party){
     return response.data;
 }
 
-export { getAllParty, getPartiesIdAndName, createParty, updateParty};
+async function removeParty(id){
+    const response = await apiClient.delete(`api/Party/${id}`);
+    return response.data;
+}
+
+export { getAllParty, getPartiesIdAndName, createParty, updateParty, removeParty};

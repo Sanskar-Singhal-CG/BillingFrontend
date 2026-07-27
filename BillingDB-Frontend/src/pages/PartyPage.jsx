@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PartyTable from "../components/party/PartyTable";
-import { createParty , getAllParty, updateParty } from "../api/PartyApi";
+import { createParty , getAllParty, updateParty, removeParty } from "../api/PartyApi";
 import PartyForm from "../components/party/PartyForm";
 import '../styles/common/button.css'
 
@@ -45,6 +45,13 @@ function PartyPage(){
         } catch(e) { console.log(e) }
     }
 
+    async function deleteParty(id){
+        try{
+            await removeParty(id);
+            await getAllParties();
+        } catch(e) { console.log(e); }
+    }
+
     useEffect( function() {
             getAllParty().then(function(partiesData) {setparties(partiesData)});
         }, []);
@@ -63,7 +70,7 @@ function PartyPage(){
             </div>
 
             { showform && <PartyForm onCancel={closePartyForm} onSave={saveParty} partyToEdit={partyToEdit} /> }
-            <PartyTable parties={parties} onEdit={openEditPartyForm}/>
+            <PartyTable parties={parties} onEdit={openEditPartyForm} onDelete={deleteParty}/>
         </div>
         </>
     )
