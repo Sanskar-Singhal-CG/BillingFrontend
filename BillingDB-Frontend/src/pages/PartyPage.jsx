@@ -46,6 +46,10 @@ function PartyPage(){
     }
 
     async function deleteParty(id){
+        const confirmation = window.confirm('Are you Sure?');
+
+        if(!confirmation) return;
+        
         try{
             await removeParty(id);
             await getAllParties();
