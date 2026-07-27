@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL
+    baseURL: "https://billingdb-backend20260727154930-hzh8f0hadnekgdcm.centralindia-01.azurewebsites.net"
 });
-
-console.log("backend url is", import.meta.env.VITE_API_BASE_URL);
 
 export default apiClient;
